@@ -22,6 +22,8 @@
 		spec: pwd => /[^A-Za-z0-9]/.test(pwd)
 	};
 
+	// sdfsdf
+
 	function setFieldState(el, ok){
 		el.classList.toggle('valid', ok);
 		el.classList.toggle('invalid', !ok);
