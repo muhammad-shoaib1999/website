@@ -1,0 +1,142 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width,initial-scale=1" />
+	<title>Creative Sign Up</title>
+	<link rel="stylesheet" href="styles.css" />
+	<!-- ...existing code... -->
+
+	<style>
+	/* Attractive submit button override (keeps original styles but enhances look) */
+	.submit-btn{
+		position:relative;
+		overflow:hidden;
+		padding:12px 20px;
+		border-radius:14px;
+		border:none;
+		color:#fff;
+		font-weight:700;
+		letter-spacing:0.3px;
+		background:linear-gradient(90deg,#7c5cff 0%, #2bd2ff 60%, #3ad7a8 100%);
+		box-shadow:
+			0 12px 30px rgba(44,210,255,0.10),
+			inset 0 -6px 24px rgba(0,0,0,0.18);
+		transition:transform .18s cubic-bezier(.2,.9,.2,1), box-shadow .18s;
+		cursor:pointer;
+		display:inline-flex;
+		align-items:center;
+		justify-content:center;
+		gap:10px;
+		z-index:0;
+	}
+
+	.submit-btn .btn-label{ position:relative; z-index:2; }
+
+	/* subtle glossy streak that slides on hover */
+	.submit-btn::before{
+		content:"";
+		position:absolute;
+		top:-40%;
+		left:-60%;
+		width:220%;
+		height:200%;
+		background:linear-gradient(120deg, rgba(255,255,255,0.18) 0%, rgba(255,255,255,0.06) 40%, rgba(255,255,255,0) 60%);
+		transform:translateX(-110%) rotate(12deg);
+		transition:transform .6s cubic-bezier(.2,.9,.2,1), opacity .25s;
+		opacity:0;
+		pointer-events:none;
+	}
+
+	.submit-btn:hover{
+		transform:translateY(-4px) scale(1.02);
+		box-shadow:
+			0 22px 48px rgba(43,210,255,0.16),
+			inset 0 -8px 28px rgba(0,0,0,0.2);
+	}
+
+	.submit-btn:hover::before{
+		transform:translateX(-10%) rotate(12deg);
+		opacity:1;
+	}
+
+	/* keyboard focus */
+	.submit-btn:focus{
+		outline:3px solid rgba(124,92,255,0.18);
+		outline-offset:4px;
+		transform:translateY(-2px);
+	}
+
+	/* small active press feedback */
+	.submit-btn:active{
+		transform:translateY(0) scale(.995);
+		box-shadow:0 8px 18px rgba(43,210,255,0.08);
+	}
+	</style>
+	<!-- ...existing code... -->
+</head>
+<body>
+	<main class="page">
+		<section class="card">
+			<h1 class="title">Create an account</h1>
+			<p class="subtitle">Join us — it's quick and secure.</p>
+
+			<form id="signupForm" novalidate>
+				<label class="field">
+					<span class="label-text">Name</span>
+					<input type="text" id="name" name="name" placeholder="Your full name" required />
+					<small class="error" id="nameError"></small>
+				</label>
+
+				<label class="field">
+					<span class="label-text">Age</span>
+					<input type="number" id="age" name="age" placeholder="e.g. 25" min="0" required />
+					<small class="error" id="ageError"></small>
+				</label>
+
+				<label class="field">
+					<span class="label-text">Gender</span>
+					<select id="gender" name="gender" required>
+						<option value="">Select gender</option>
+						<option value="male">Male</option>
+						<option value="female">Female</option>
+						<option value="other">Other</option>
+						<option value="prefer_not">Prefer not to say</option>
+					</select>
+					<small class="error" id="genderError"></small>
+				</label>
+
+				<label class="field">
+					<span class="label-text">Password</span>
+					<div class="password-wrap">
+						<input type="password" id="password" name="password" placeholder="At least 8 characters" required />
+						<button type="button" id="togglePwd" class="toggle" aria-label="Show password">Show</button>
+					</div>
+					<small class="error" id="passwordError"></small>
+					<ul class="pw-rules" id="pwRules">
+						<li data-valid="false">At least 8 characters</li>
+						<li data-valid="false">Uppercase & lowercase</li>
+						<li data-valid="false">Number</li>
+						<li data-valid="false">Special character</li>
+					</ul>
+				</label>
+
+				<label class="field">
+					<span class="label-text">Confirm Password</span>
+					<input type="password" id="confirmPassword" name="confirmPassword" placeholder="Re-enter password" required />
+					<small class="error" id="confirmError"></small>
+				</label>
+
+				<!-- changed: use inner span for layered label -->
+				<button class="submit-btn" id="submitBtn" type="submit">
+					<span class="btn-label">Sign Up</span>
+				</button>
+			</form>
+
+			<p class="foot">By signing up you accept our terms.</p>
+		</section>
+	</main>
+
+	<script src="script.js" defer></script>
+</body>
+</html>
